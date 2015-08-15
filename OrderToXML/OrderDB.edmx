@@ -1,0 +1,463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProductionDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="OrderPackages">
+          <Key>
+            <PropertyRef Name="OrderOackagsID" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="PackageID" Type="int" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="500" />
+          <Property Name="OrderOackagsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="SortingID" Type="int" />
+          <Property Name="ParentPackageID" Type="int" Nullable="false" />
+          <Property Name="IsComplited" Type="bit" Nullable="false" />
+          <Property Name="PDF" Type="nvarchar" MaxLength="500" />
+          <Property Name="PackageStateID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Dir" />
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="System" Type="nvarchar" MaxLength="100" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Dir" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PO" Type="nvarchar" MaxLength="20" />
+          <Property Name="PODate" Type="nvarchar" MaxLength="40" />
+          <Property Name="SystemType" Type="nvarchar" MaxLength="10" />
+          <Property Name="POTotalAmount" Type="float" />
+          <Property Name="SN" Type="nvarchar" MaxLength="30" />
+          <Property Name="Job" Type="nvarchar" MaxLength="30" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="500" />
+          <Property Name="EstimatedShipmentDate" Type="nvarchar" MaxLength="40" />
+          <Property Name="Install" Type="bit" />
+          <Property Name="InstalledBy" Type="nvarchar" MaxLength="10" />
+          <Property Name="InstallDate" Type="nvarchar" MaxLength="40" />
+          <Property Name="Country" Type="nvarchar" MaxLength="20" />
+          <Property Name="State" Type="nvarchar" MaxLength="2" />
+          <Property Name="City" Type="nvarchar" MaxLength="20" />
+          <Property Name="OrderPriority" Type="int" />
+          <Property Name="Packages" Type="int" />
+          <Property Name="Parts" Type="int" />
+          <Property Name="PartsNeedToPull" Type="int" />
+          <Property Name="POs" Type="int" />
+          <Property Name="PosOpen" Type="int" />
+          <Property Name="FullName" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PackageParts">
+          <Key>
+            <PropertyRef Name="PackagePartID" />
+          </Key>
+          <Property Name="PackageID" Type="int" />
+          <Property Name="PartID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+          <Property Name="PackagePartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SortingID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Packages">
+          <Key>
+            <PropertyRef Name="PackageID" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="PackageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="500" />
+          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="PackageStateID" Type="int" Nullable="false" />
+          <Property Name="PackageTypeID" Type="int" />
+          <Property Name="PDF" Type="nvarchar" MaxLength="500" />
+          <Property Name="AddToPackingList" Type="bit" Nullable="false" />
+          <Property Name="DisplayName" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Parts">
+          <Key>
+            <PropertyRef Name="PartID" />
+          </Key>
+          <Property Name="PartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OLISID" Type="nvarchar" MaxLength="100" />
+          <Property Name="PartNo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="VendorID" Type="int" Nullable="false" />
+          <Property Name="InventoryLocation" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUnitCost" Type="money" />
+          <Property Name="PCBWorksheets" Type="nvarchar" MaxLength="200" />
+          <Property Name="NotPulledFromInventory" Type="bit" />
+          <Property Name="LeadTime " Type="float" />
+          <Property Name="ModifiedFromPartID" Type="int" />
+          <Property Name="PreassemblyPartID" Type="int" />
+          <Property Name="ProceesTypeID" Type="int" />
+          <Property Name="IsModified" Type="bit" />
+          <Property Name="IsLongLeadTime" Type="bit" />
+          <Property Name="AddToPackingList" Type="bit" Nullable="false" />
+          <Property Name="DisplayName" Type="nchar" MaxLength="50" />
+          <Property Name="MPN" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SageNote" Type="nvarchar" MaxLength="249" />
+          <Property Name="QuantityOnHand" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="IsPrimaryVendor" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vendors">
+          <Key>
+            <PropertyRef Name="VendorID" />
+          </Key>
+          <Property Name="VendorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendorName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'Orders4' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="Orders4" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'PackagesPart' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="PackagesPart" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'Packges' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="Packges" />-->
+        <Association Name="Part">
+          <End Role="Parts" Type="Self.Parts" Multiplicity="0..1" />
+          <End Role="PackageParts" Type="Self.PackageParts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parts">
+              <PropertyRef Name="PartID" />
+            </Principal>
+            <Dependent Role="PackageParts">
+              <PropertyRef Name="PartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Vendor">
+          <End Role="Vendors" Type="Self.Vendors" Multiplicity="1" />
+          <End Role="Parts" Type="Self.Parts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendors">
+              <PropertyRef Name="VendorID" />
+            </Principal>
+            <Dependent Role="Parts">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProductionDBModelStoreContainer">
+          <EntitySet Name="OrderPackages" EntityType="Self.OrderPackages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PackageParts" EntityType="Self.PackageParts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Packages" EntityType="Self.Packages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parts" EntityType="Self.Parts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendors" EntityType="Self.Vendors" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Part" Association="Self.Part">
+            <End Role="Parts" EntitySet="Parts" />
+            <End Role="PackageParts" EntitySet="PackageParts" />
+          </AssociationSet>
+          <AssociationSet Name="Vendor" Association="Self.Vendor">
+            <End Role="Vendors" EntitySet="Vendors" />
+            <End Role="Parts" EntitySet="Parts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProductionDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="OrderPackage">
+          <Key>
+            <PropertyRef Name="OrderOackagsID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="PackageID" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="OrderOackagsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="SortingID" Type="Int32" />
+          <Property Name="ParentPackageID" Type="Int32" Nullable="false" />
+          <Property Name="IsComplited" Type="Boolean" Nullable="false" />
+          <Property Name="PDF" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PackageStateID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Dir" />
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="System" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Dir" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StateID" Type="Int32" Nullable="false" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PODate" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="SystemType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="POTotalAmount" Type="Double" />
+          <Property Name="SN" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Job" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EstimatedShipmentDate" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Install" Type="Boolean" />
+          <Property Name="InstalledBy" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="InstallDate" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="OrderPriority" Type="Int32" />
+          <Property Name="Packages" Type="Int32" />
+          <Property Name="Parts" Type="Int32" />
+          <Property Name="PartsNeedToPull" Type="Int32" />
+          <Property Name="POs" Type="Int32" />
+          <Property Name="PosOpen" Type="Int32" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PackagePart">
+          <Key>
+            <PropertyRef Name="PackagePartID" />
+          </Key>
+          <Property Name="PackageID" Type="Int32" />
+          <Property Name="PartID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PackagePartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SortingID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Part" Relationship="Self.Part1" FromRole="PackageParts" ToRole="Parts" />
+        </EntityType>
+        <EntityType Name="Package">
+          <Key>
+            <PropertyRef Name="PackageID" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="PackageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <Property Name="PackageStateID" Type="Int32" Nullable="false" />
+          <Property Name="PackageTypeID" Type="Int32" />
+          <Property Name="PDF" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AddToPackingList" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Part">
+          <Key>
+            <PropertyRef Name="PartID" />
+          </Key>
+          <Property Name="PartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OLISID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PartNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VendorID" Type="Int32" Nullable="false" />
+          <Property Name="InventoryLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUnitCost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PCBWorksheets" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NotPulledFromInventory" Type="Boolean" />
+          <Property Name="LeadTime_" Type="Double" />
+          <Property Name="ModifiedFromPartID" Type="Int32" />
+          <Property Name="PreassemblyPartID" Type="Int32" />
+          <Property Name="ProceesTypeID" Type="Int32" />
+          <Property Name="IsModified" Type="Boolean" />
+          <Property Name="IsLongLeadTime" Type="Boolean" />
+          <Property Name="AddToPackingList" Type="Boolean" Nullable="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="MPN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SageNote" Type="String" MaxLength="249" FixedLength="false" Unicode="true" />
+          <Property Name="QuantityOnHand" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IsPrimaryVendor" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PackageParts" Relationship="Self.Part1" FromRole="Parts" ToRole="PackageParts" />
+          <NavigationProperty Name="Vendor" Relationship="Self.Vendor1" FromRole="Parts" ToRole="Vendors" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="VendorID" />
+          </Key>
+          <Property Name="VendorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Parts" Relationship="Self.Vendor1" FromRole="Vendors" ToRole="Parts" />
+        </EntityType>
+        <Association Name="Part1">
+          <End Role="Parts" Type="Self.Part" Multiplicity="0..1" />
+          <End Role="PackageParts" Type="Self.PackagePart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parts">
+              <PropertyRef Name="PartID" />
+            </Principal>
+            <Dependent Role="PackageParts">
+              <PropertyRef Name="PartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Vendor1">
+          <End Role="Vendors" Type="Self.Vendor" Multiplicity="1" />
+          <End Role="Parts" Type="Self.Part" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendors">
+              <PropertyRef Name="VendorID" />
+            </Principal>
+            <Dependent Role="Parts">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProductionDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="OrderPackages" EntityType="Self.OrderPackage" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="PackageParts" EntityType="Self.PackagePart" />
+          <EntitySet Name="Packages" EntityType="Self.Package" />
+          <EntitySet Name="Parts" EntityType="Self.Part" />
+          <EntitySet Name="Vendors" EntityType="Self.Vendor" />
+          <AssociationSet Name="Part" Association="Self.Part1">
+            <End Role="Parts" EntitySet="Parts" />
+            <End Role="PackageParts" EntitySet="PackageParts" />
+          </AssociationSet>
+          <AssociationSet Name="Vendor" Association="Self.Vendor1">
+            <End Role="Vendors" EntitySet="Vendors" />
+            <End Role="Parts" EntitySet="Parts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProductionDBModelStoreContainer" CdmEntityContainer="ProductionDBEntities">
+          <EntitySetMapping Name="OrderPackages">
+            <EntityTypeMapping TypeName="ProductionDBModel.OrderPackage">
+              <MappingFragment StoreEntitySet="OrderPackages">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="PackageID" ColumnName="PackageID" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="OrderOackagsID" ColumnName="OrderOackagsID" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="SortingID" ColumnName="SortingID" />
+                <ScalarProperty Name="ParentPackageID" ColumnName="ParentPackageID" />
+                <ScalarProperty Name="IsComplited" ColumnName="IsComplited" />
+                <ScalarProperty Name="PDF" ColumnName="PDF" />
+                <ScalarProperty Name="PackageStateID" ColumnName="PackageStateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ProductionDBModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="System" ColumnName="System" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Dir" ColumnName="Dir" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="PO" ColumnName="PO" />
+                <ScalarProperty Name="PODate" ColumnName="PODate" />
+                <ScalarProperty Name="SystemType" ColumnName="SystemType" />
+                <ScalarProperty Name="POTotalAmount" ColumnName="POTotalAmount" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="Job" ColumnName="Job" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="EstimatedShipmentDate" ColumnName="EstimatedShipmentDate" />
+                <ScalarProperty Name="Install" ColumnName="Install" />
+                <ScalarProperty Name="InstalledBy" ColumnName="InstalledBy" />
+                <ScalarProperty Name="InstallDate" ColumnName="InstallDate" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="OrderPriority" ColumnName="OrderPriority" />
+                <ScalarProperty Name="Packages" ColumnName="Packages" />
+                <ScalarProperty Name="Parts" ColumnName="Parts" />
+                <ScalarProperty Name="PartsNeedToPull" ColumnName="PartsNeedToPull" />
+                <ScalarProperty Name="POs" ColumnName="POs" />
+                <ScalarProperty Name="PosOpen" ColumnName="PosOpen" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PackageParts">
+            <EntityTypeMapping TypeName="ProductionDBModel.PackagePart">
+              <MappingFragment StoreEntitySet="PackageParts">
+                <ScalarProperty Name="PackageID" ColumnName="PackageID" />
+                <ScalarProperty Name="PartID" ColumnName="PartID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="PackagePartID" ColumnName="PackagePartID" />
+                <ScalarProperty Name="SortingID" ColumnName="SortingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packages">
+            <EntityTypeMapping TypeName="ProductionDBModel.Package">
+              <MappingFragment StoreEntitySet="Packages">
+                <ScalarProperty Name="PackageID" ColumnName="PackageID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="PackageStateID" ColumnName="PackageStateID" />
+                <ScalarProperty Name="PackageTypeID" ColumnName="PackageTypeID" />
+                <ScalarProperty Name="PDF" ColumnName="PDF" />
+                <ScalarProperty Name="AddToPackingList" ColumnName="AddToPackingList" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parts">
+            <EntityTypeMapping TypeName="ProductionDBModel.Part">
+              <MappingFragment StoreEntitySet="Parts">
+                <ScalarProperty Name="PartID" ColumnName="PartID" />
+                <ScalarProperty Name="OLISID" ColumnName="OLISID" />
+                <ScalarProperty Name="PartNo" ColumnName="PartNo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="InventoryLocation" ColumnName="InventoryLocation" />
+                <ScalarProperty Name="LastUnitCost" ColumnName="LastUnitCost" />
+                <ScalarProperty Name="PCBWorksheets" ColumnName="PCBWorksheets" />
+                <ScalarProperty Name="NotPulledFromInventory" ColumnName="NotPulledFromInventory" />
+                <ScalarProperty Name="LeadTime_" ColumnName="LeadTime " />
+                <ScalarProperty Name="ModifiedFromPartID" ColumnName="ModifiedFromPartID" />
+                <ScalarProperty Name="PreassemblyPartID" ColumnName="PreassemblyPartID" />
+                <ScalarProperty Name="ProceesTypeID" ColumnName="ProceesTypeID" />
+                <ScalarProperty Name="IsModified" ColumnName="IsModified" />
+                <ScalarProperty Name="IsLongLeadTime" ColumnName="IsLongLeadTime" />
+                <ScalarProperty Name="AddToPackingList" ColumnName="AddToPackingList" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="MPN" ColumnName="MPN" />
+                <ScalarProperty Name="SageNote" ColumnName="SageNote" />
+                <ScalarProperty Name="QuantityOnHand" ColumnName="QuantityOnHand" />
+                <ScalarProperty Name="IsPrimaryVendor" ColumnName="IsPrimaryVendor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendors">
+            <EntityTypeMapping TypeName="ProductionDBModel.Vendor">
+              <MappingFragment StoreEntitySet="Vendors">
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
