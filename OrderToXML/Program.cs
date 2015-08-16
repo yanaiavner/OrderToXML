@@ -27,10 +27,6 @@ namespace OrderToXML
                     var orderLimit = 0;
                     var cts = new CancellationTokenSource();
 
-                    
-                    
-
-
                     WriteXMLLine(GetXMLLine(0, "Root"), toFile);
                     var result = SetOrdersXMLAsync(db, orderLimit, toFile, cts.Token);
 
