@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
@@ -89,8 +87,8 @@ namespace OrderToXML
             WriteXMLLine(GetXMLLine(1, "Order", false, order.OrderID.ToString(), true, "ID"), toFile);
             WriteXMLLine(GetXMLLine(2, "Name", false, order.Name), toFile);
             WriteXMLLine(GetXMLLine(2, "System", false, order.System), toFile);
-            WriteXMLLine(GetXMLLine(2, "PO", false, order.PO), toFile);
-            WriteXMLLine(GetXMLLine(2, "PODate", false, order.PODate), toFile);
+            WriteXMLLine(GetXMLLine(2, "PO", false, order.PO == null ? string.Empty : order.PO), toFile);
+            WriteXMLLine(GetXMLLine(2, "PODate", false, order.PODate == null ? string.Empty : order.PODate), toFile);
             if (!string.IsNullOrWhiteSpace(order.SN)) WriteXMLLine(GetXMLLine(2, "SN", false, order.SN), toFile);
             WriteXMLLine(GetXMLLine(2, "StateID", false, order.StateID.ToString()), toFile);
 
@@ -172,15 +170,27 @@ namespace OrderToXML
                 return line;
             }
 
+            value = escapedValue(value);
+
             if(isValueAtrebute)
             {
-                line += $" {atrebute}={value}>";
+                line += $" {atrebute}='{value}'>";
                 return line;
             }
 
             line += $">{value}</{tag}>";
 
             return line;
+        }
+
+        static string escapedValue(string value)
+        {
+            value = value.Replace("\"", "&quot;");
+            value = value.Replace("'", "&apos;");
+            value = value.Replace(">", "&gt;");
+            value = value.Replace("<", "&lt;");
+            value = value.Replace("&", "&amp;");
+            return value;
         }
     }
 }
